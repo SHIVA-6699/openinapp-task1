@@ -152,7 +152,7 @@ const SideBar = () => {
       <div
         className={`${
           open ? "w-64" : "w-28"
-        } bg-white dark:bg-[#0D0D0D] dark:text-white shadow-xl h-screen  p-5 pt-8 fixed top-0 left-0 z-40 duration-700 lg:block ${
+        } bg-white dark:bg-[#0D0D0D] dark:text-white shadow-xl min-h-screen  p-5 pt-8 fixed top-0 left-0 z-40 duration-700 lg:block ${
           mobileOpen ? "block" : "hidden"
         } lg:relative lg:z-auto lg:top-0 lg:left-0`}
       >
@@ -181,7 +181,7 @@ const SideBar = () => {
         </div>
 
         {/* Menu Items */}
-        <ul className="pt-6">
+        <ul className="pt-6 space-y-5">
           {Menus.map((Menu, index) => (
             <li
               key={index}
@@ -211,7 +211,7 @@ const SideBar = () => {
       </div>
 
       {/* Main Content Area */}
-      <div className="h-screen dark:bg-[#161616] dark:text-white flex-1 p-7 ">
+      <div className="min-h-screen bottom-0 dark:bg-[#161616] dark:text-white flex-1 p-7 ">
         {renderContent()}
       </div>
 

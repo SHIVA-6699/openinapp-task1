@@ -27,11 +27,11 @@ const Upload = () => {
   //   };
 
   return (
-    <div className="mt-10 text-white lg:mt-0">
+    <div className="mt-10 text-black dark:text-white lg:mt-0">
       <div className="hidden lg:flex justify-between">
         <h1 className="font-figtree text-2xl font-semibold">Upload CSV</h1>
         <div className="flex  items-baseline gap-x-7">
-          <IoMdNotifications className="lg:text-2xl text-xl text-black" />
+          <IoMdNotifications className="lg:text-2xl text-xl text-black dark:text-white" />
           <img
             src={userData?.picture}
             className="rounded-full lg:w-10 lg:h-10 w-7 h-7 cursor-pointer"
@@ -40,7 +40,7 @@ const Upload = () => {
         </div>
       </div>
       {/* Csv upload component render here | */}
-      <div className="flex justify-center items-center w-full h-[calc(100vh-64px)]">
+      <div className="flex justify-center items-center w-full h-full">
         <FileUpload />
       </div>
     </div>

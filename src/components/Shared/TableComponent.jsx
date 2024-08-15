@@ -1,5 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
-
+import { Link } from "react-router-dom";
 const TableComponent = ({ data }) => {
   const [tags, setTags] = useState({});
 
@@ -24,51 +25,66 @@ const TableComponent = ({ data }) => {
   };
 
   return (
-    <div className="table-container">
-      <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-          <tr>
-            <th>Sl No.</th>
-            <th>Links</th>
-            <th>Prefix</th>
-            <th>Add Tags</th>
-            <th>Selected Tags</th>
+    <div className="table-container border-spacing-4 rounded-xl border-separate mt-4 h-[25rem]  overflow-x-auto overflow-y-auto ">
+    {data.length === 0  (
+        <div className="flex justify-center items-center h-full">
+            <p className="text-black dark:text-white">No data available</p>
+        </div>
+      )}                    
+       
+      <table className="w-full text-sm border-separate rounded-md border-spacing-y-2 p-5 text-left bg-gray-200 dark:bg-[#0D0D0D] text-black dark:text-white">
+        <thead className="text-xs  text-black   bg-gray-100 sticky top-0 dark:bg-[#0D0D0D] dark:text-white">
+          <tr className="text-center">
+            <th className="font-figtree text-[14px] p-4">Sl No.</th>
+            <th className="font-figtree text-[14px] p-4">Links</th>
+            <th className="font-figtree text-[14px] p-4">Prefix</th>
+            <th className="font-figtree text-[14px] p-4">Add Tags</th>
+            <th className="font-figtree text-[14px] p-4">Selected Tags</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="">
           {data.map((row, index) => (
             <tr
+              className="text-center h-14  bg-gray-50   dark:bg-[#161616] text-black dark:text-white"
               key={index}
-              className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
             >
-              <td>{index + 1}</td>
-              <td>
-                <a href={row.links} target="_blank" rel="noopener noreferrer">
+              <td className="w-[5rem]">{index + 1}</td>
+              <td className="w-[15rem]">
+                <Link
+                  to={row.links}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#5B93FF] underline"
+                >
                   {row.links}
-                </a>
+                </Link>
               </td>
-              <td>{row.prefix}</td>
-              <td>
+              <td className="w-[10rem]">{row.prefix}</td>
+              <td className="w-[15rem]">
                 <select
                   onChange={(e) => handleTagSelect(index, e.target.value)}
-                  className="border rounded p-1"
+                  className="border rounded p-1 dark:bg-[#0D0D0D] dark:text-white"
                 >
                   <option value="">Select a tag</option>
                   {row.selecttags &&
                     row.selecttags.split(",").map((tag, tagIndex) => (
-                      <option key={tagIndex} value={tag.trim()}>
+                      <option
+                        key={tagIndex}
+                        className="dark:bg-[#0D0D0D] dark:text-white p-2"
+                        value={tag.trim()}
+                      >
                         {tag.trim()}
                       </option>
                     ))}
                 </select>
               </td>
-              <td>
+              <td className="w-[20rem]">
                 <div className="flex flex-wrap">
                   {tags[index] &&
                     tags[index].map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="bg-blue-600 text-white rounded-full px-3 py-1 m-1 cursor-pointer"
+                        className="bg-[#605BFF] text-white dark:text-black rounded-lg px-3 py-1 m-1 cursor-pointer"
                         onClick={() => handleRemoveTag(index, tag)}
                       >
                         {tag} &times;
