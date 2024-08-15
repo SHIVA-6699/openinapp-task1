@@ -6,10 +6,23 @@ import { AiOutlineApple } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "./hooks/userContext";
 import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from "react-toastify";
 const Login = () => {
   const navigate = useNavigate();
-const { setUserData } = useContext(UserContext);
-
+  const { setUserData } = useContext(UserContext);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
+  const onSubmit = (data) => {
+    notify("Login Successful");
+    reset();
+    console.log(data);
+  };
+  const notify = (info) => toast(info);
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
@@ -21,9 +34,9 @@ const { setUserData } = useContext(UserContext);
             },
           }
         );
-        if(res.status === 200){
-           setUserData(res.data);
-           localStorage.setItem("userData", JSON.stringify(res.data));
+        if (res.status === 200) {
+          setUserData(res.data);
+          localStorage.setItem("userData", JSON.stringify(res.data));
 
           navigate("/home");
         }
@@ -38,8 +51,8 @@ const { setUserData } = useContext(UserContext);
     <div className="grid grid-cols-12  w-full dark:bg-[#161616]  ">
       <div className="col-span-12 hidden lg:block px-24 lg:col-span-6  p-10 h-screen">
         <div className="w-full h-full rounded-lg bg-[#605bff] dark:bg-[#605bff] p-10">
-          <div className="bg-[#767efc] dark:bg-[#4b57d7] transition-all duration-700 w-full h-fit flex flex-col rounded-lg p-14 z-20 space-y-3">
-            <div className="flex items-center gap-x-2 px-4 p-2 bg-white w-fit h-fit rounded-full ">
+          <div className="bg-[#767efc] dark:bg-[#4b57d7] transition-all duration-700 w-full h-full flex flex-col  rounded-lg p-14 z-20 space-y-3">
+            <div className="flex items-cs gap-x-2 px-4 p-2 bg-white w-fit h-fit rounded-full ">
               <svg
                 width="29"
                 height="29"
@@ -62,20 +75,22 @@ const { setUserData } = useContext(UserContext);
               </svg>
               <span className="text-[26.5px] font-montserrat">Base</span>
             </div>
-            <p className="font-montserrat text-[35px] text-white  h-fit flex flex-col items-start">
-              <span>Generate detailed</span>
-              <span>reports with just one </span>
-              <span>click</span>
+            <p className="font-montserrat w-full xl:text-[30px] text-white  h-fit flex flex-col items-start">
+              <span className="min-w-fit">Generate detailed</span>
+              <span className="min-w-fit text-nowrap">
+                reports with just one{" "}
+              </span>
+              <span className="min-w-fit">click</span>
             </p>
-            <div className="grid grid-cols-12 ">
-              <div className="col-span-2 mt-[12rem]">
+            <div className="grid grid-cols-12   ">
+              <div className="col-span-2 lg:mt-[10rem]">
                 <ToggleButton />
               </div>
               <div className="col-span-10">
                 <img
                   src="/Login/img1.png"
                   alt=""
-                  className="absolute top-[6rem] left-[17 rem]"
+                  className="absolute lg:top-[5rem] lg:left-[10rem] xl:top-[5rem] xl:left-[16rem] 2xl:left-[17rem] 2xl:top-[6rem] "
                 />
               </div>
             </div>
@@ -119,26 +134,33 @@ const { setUserData } = useContext(UserContext);
           <div className="flex space-x-4 mb-6">
             <button
               onClick={() => login()}
-              className="flex gap-x-2 items-center p-2 w-full justify-center dark:bg-gray-700 text-black dark:text-gray-200 bg-gray-100 rounded-md"
+              className="flex gap-x-2 items-center p-2 w-full justify-center dark:bg-[#0d0d0d] text-black dark:text-gray-200 bg-gray-100 rounded-md"
             >
               <FcGoogle className="text-2xl" />
               <span className="font-montserrat text-sm">
                 Sign in with Google
               </span>
             </button>
-            <button className="flex items-center gap-x-3 justify-center w-full dark:bg-gray-700 text-black dark:text-gray-200 bg-gray-100 rounded-md text-sm font-montserrat">
+            <button className="flex items-center gap-x-3 justify-center w-full dark:bg-[#0d0d0d] text-black dark:text-gray-200 bg-gray-100 rounded-md text-sm font-montserrat">
               <AiOutlineApple className="text-2xl font-montserrat" />
               <span>Sign in with Apple</span>
             </button>
           </div>
-          <form className="space-y-4 shadow-lg bg-white border dark:border-none dark:bg-[#0d0d0d] dark:text-white p-5 rounded-xl  ">
+          <form
+            onClick={handleSubmit(onSubmit)}
+            className="space-y-4 shadow-lg bg-white border dark:border-none dark:bg-[#0d0d0d] dark:text-white p-5 rounded-xl  "
+          >
             <div className="space-y-3">
               <p className="font-lato text-sm font-semibold">Email address</p>
               <input
                 type="email"
                 className="w-full  font-lato text-sm bg-gray-100 outline-none rounded-md p-2 mt-1"
                 placeholder="johndoe@gmail.com"
+                {...register("email", { required: true })}
               />
+              {errors.email && (
+                <span className="text-red-400">This field is required</span>
+              )}
             </div>
             <div className="space-y-3">
               <p className="font-lato  text-sm font-semibold">Password</p>
@@ -146,14 +168,21 @@ const { setUserData } = useContext(UserContext);
                 type="password"
                 className="w-full  bg-gray-100 outline-none  font-lato text-sm  rounded-md p-2 mt-1"
                 placeholder="********"
+                {...register("password", { required: true })}
               />
+              {errors.password && (
+                <span className="text-red-400">This field is required</span>
+              )}
             </div>
             <div className="flex justify-between items-center">
               <p className="text-[#3e72d5] font-lato text-sm cursor-pointer">
                 Forgot password?
               </p>
             </div>
-            <button className="w-full bg-[#605bff] text-white font-montserrat text-sm p-2 rounded-md mt-4">
+            <button
+              type="submit"
+              className="w-full bg-[#605bff] text-white font-montserrat text-sm p-2 rounded-md mt-4"
+            >
               Sign In
             </button>
           </form>
@@ -194,6 +223,7 @@ const { setUserData } = useContext(UserContext);
             />
           </svg>
         </div>
+        <ToastContainer />
       </div>
     </div>
   );
