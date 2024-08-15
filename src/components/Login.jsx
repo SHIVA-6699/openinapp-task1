@@ -125,10 +125,10 @@ const Login = () => {
           </svg>
         </div>
         <div className=" p-8 rounded-lg w-11/12 lg:w-2/3 space-y-5">
-        <div className=" lg:hidden">
+        {/* <div className=" lg:hidden">
 
           { <ToggleButton />}
-        </div>
+        </div> */}
 
           <h1 className="font-montserrat font-bold text-4xl mb-4 dark:text-white">
             Sign In
