@@ -181,7 +181,7 @@ const SideBar = () => {
         </div>
 
         {/* Menu Items */}
-        <ul className="pt-6 space-y-5">
+        <ul className="pt-6 space-y-3">
           {Menus.map((Menu, index) => (
             <li
               key={index}

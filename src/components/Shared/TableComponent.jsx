@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const TableComponent = ({ data }) => {
@@ -26,12 +25,6 @@ const TableComponent = ({ data }) => {
 
   return (
     <div className="table-container border-spacing-4 rounded-xl border-separate mt-4 h-[25rem]  overflow-x-auto overflow-y-auto ">
-    {data.length === 0  (
-        <div className="flex justify-center items-center h-full">
-            <p className="text-black dark:text-white">No data available</p>
-        </div>
-      )}                    
-       
       <table className="w-full text-sm border-separate rounded-md border-spacing-y-2 p-5 text-left bg-gray-200 dark:bg-[#0D0D0D] text-black dark:text-white">
         <thead className="text-xs  text-black   bg-gray-100 sticky top-0 dark:bg-[#0D0D0D] dark:text-white">
           <tr className="text-center">
