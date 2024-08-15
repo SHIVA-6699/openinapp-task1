@@ -17,12 +17,12 @@ const Login = () => {
     formState: { errors },
     reset,
   } = useForm();
+  const notify = (info) => toast(info);
   const onSubmit = (data) => {
     notify("Login Successful");
     reset();
     console.log(data);
   };
-  const notify = (info) => toast(info);
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
@@ -37,8 +37,8 @@ const Login = () => {
         if (res.status === 200) {
           setUserData(res.data);
           localStorage.setItem("userData", JSON.stringify(res.data));
-
           navigate("/home");
+          notify("Login Successful");
         }
         console.log(res);
       } catch (err) {
@@ -124,7 +124,12 @@ const Login = () => {
             />
           </svg>
         </div>
-        <div className=" p-8 rounded-lg w-11/12 lg:w-2/3">
+        <div className=" p-8 rounded-lg w-11/12 lg:w-2/3 space-y-5">
+        <div className=" lg:hidden">
+
+          { <ToggleButton />}
+        </div>
+
           <h1 className="font-montserrat font-bold text-4xl mb-4 dark:text-white">
             Sign In
           </h1>

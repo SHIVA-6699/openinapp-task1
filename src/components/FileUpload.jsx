@@ -154,7 +154,7 @@ const FileUpload = () => {
             </>
           )}
           {fileName && (
-            <div className="flex flex-col items-center space-x-3">
+            <div className="flex w-[4rem] lg:w-full flex-col items-center space-x-3">
               {/* File uploaded SVG and name */}
               <p className="text-gray-600 dark:text-white">{fileName}</p>
               <button
