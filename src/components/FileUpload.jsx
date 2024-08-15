@@ -65,16 +65,16 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="w-full flex flex-col items-center space-y-10">
-      <div className="bg-white shadow-md dark:bg-[#0D0D0D] border dark:border-none rounded-lg p-16 max-w-md lg:max-w-xl w-full">
+    <div className=" flex flex-col items-center space-y-10 w-[16rem] lg:w-full">
+      <div className="bg-white shadow-md dark:bg-[#0D0D0D] border dark:border-none rounded-lg text-center p-10 max-w-md lg:max-w-xl w-full">
         <div
-          className="border-dashed border-2 border-gray-300 rounded-lg p-16 flex flex-col items-center justify-center"
+          className="border-dashed border-2 border-gray-300 rounded-lg p-10 flex text-center flex-col items-center justify-center"
           onClick={() => document.getElementById("fileInput").click()}
           style={{ cursor: "pointer" }}
         >
           {!fileName && (
             <>
-              <svg
+              <svg 
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"
@@ -139,7 +139,7 @@ const FileUpload = () => {
                 type="file"
                 accept=".csv,.xlsx"
                 required
-                className="hidden"
+                className="hidden "
                 onChange={handleFileChange}
               />
               <p className="text-gray-600 w-full text-center dark:text-white">
@@ -154,9 +154,9 @@ const FileUpload = () => {
             </>
           )}
           {fileName && (
-            <div className="flex w-[4rem] lg:w-full flex-col items-center space-x-3">
+            <div className="flex lg:w-full flex-col items-center space-x-3">
               {/* File uploaded SVG and name */}
-              <p className="text-gray-600 dark:text-white">{fileName}</p>
+              <p className="text-gray-600  dark:text-white">{fileName}</p>
               <button
                 className="text-red-500 hover:text-red-700"
                 onClick={handleRemoveFile}
