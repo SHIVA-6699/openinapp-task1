@@ -9,12 +9,18 @@ const FileUpload = () => {
   const [showTable, setShowTable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState("");
+const allowedExtensions = ["csv"];
 const notify = (info) => toast(info);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       setLoading(true);
       setFileName(file.name);
+       const fileExtension = file?.type.split("/")[1];
+       if (!allowedExtensions.includes(fileExtension)) {
+          notify("Invalid File Format");
+         return;
+       }
       const reader = new FileReader();
       reader.onload = (event) => {
         const csv = Papa.parse(event.target.result, { header: true });
@@ -120,6 +126,10 @@ const notify = (info) => toast(info);
               <p className="text-gray-600 w-full text-center dark:text-white">
                 Drop your excel sheet here or{" "}
                 <span className="text-[#605BFF] underline">browse</span>
+              </p>
+              <p className="text-red-400">
+                Only <span className="font-semibold text-red-500">.csv</span>{" "}
+                file are accepted.
               </p>
             </>
           )}
