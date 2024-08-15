@@ -8,7 +8,7 @@ const ToggleButton = () => {
 
   return (
     <div
-      className={`flex items-center justify-around  w-16 h-8 rounded-full cursor-pointer
+      className={`flex items-center justify-around  w-16 h-8 rounded-full shadow-md border cursor-pointer
         ${enabled ? "bg-gray-700 text-white" : "bg-white text-black"}
         `}
       onClick={() => {

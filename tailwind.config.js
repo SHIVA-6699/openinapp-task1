@@ -15,6 +15,7 @@ export const theme = {
     fontFamily: {
       montserrat: ["Montserrat", "sans-serif"],
       lato: ["Lato", "sans-serif"],
+      figtree: ["Figtree", "sans-serif"],
     },
   },
 };
