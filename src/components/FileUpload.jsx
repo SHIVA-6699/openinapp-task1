@@ -2,13 +2,14 @@ import { useState } from "react";
 import Papa from "papaparse";
 import TableComponent from "./Shared/TableComponent";
 import { LuUpload } from "react-icons/lu";
-
+ import { ToastContainer, toast } from "react-toastify";
+ import "react-toastify/dist/ReactToastify.css";
 const FileUpload = () => {
   const [data, setData] = useState([]);
   const [showTable, setShowTable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [fileName, setFileName] = useState("");
-
+const notify = (info) => toast(info);
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -21,6 +22,7 @@ const FileUpload = () => {
         setLoading(false);
       };
       reader.readAsText(file);
+      notify("File Uploaded Successfully");
     }
   };
 
@@ -34,6 +36,7 @@ const FileUpload = () => {
     setData([]);
     setShowTable(false);
     setFileName("");
+    notify("File Removed Successfully");
   };
 
   return (
@@ -208,10 +211,13 @@ const FileUpload = () => {
       <div className="w-full">
         <h1 className="font-figtree text-[24px]">Uploads</h1>
         {!showTable && data.length === 0 && (
-          <p className="text-black dark:text-white text-center text-lg">Please Upload File</p>
+          <p className="text-black dark:text-white text-center text-lg">
+            Please Upload File
+          </p>
         )}
         {showTable && <TableComponent data={data} />}
       </div>
+      <ToastContainer />
     </div>
   );
 };
