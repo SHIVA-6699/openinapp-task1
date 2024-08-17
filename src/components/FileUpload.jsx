@@ -74,7 +74,7 @@ const FileUpload = () => {
         >
           {!fileName && (
             <>
-              <svg 
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="32"
                 height="32"
@@ -150,6 +150,11 @@ const FileUpload = () => {
                 Only <span className="font-semibold text-red-500">.csv</span>{" "}
                 and <span className="font-semibold text-red-500">.xlsx</span>{" "}
                 files are accepted.
+              </p>
+              <p className="text-red-500">
+                <span className="text-black">Please note : </span>
+                The CSV file should use column names without spaces, e.g.,
+                &quot;selecttags&quot;instead of &quot;select tags&quot;.
               </p>
             </>
           )}
