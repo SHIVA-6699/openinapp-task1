@@ -50,8 +50,8 @@ const Login = () => {
   return (
     <div className="grid grid-cols-12  w-full dark:bg-[#161616]  ">
       <div className="col-span-12 hidden lg:block px-24 lg:col-span-6  p-10 h-screen">
-        <div className="w-full h-full rounded-lg bg-[#605bff] dark:bg-[#605bff] p-10">
-          <div className="bg-[#767efc] dark:bg-[#4b57d7] transition-all duration-700 w-full h-full flex flex-col  rounded-lg p-14 z-20 space-y-3">
+        <div className="w-full relative h-full rounded-lg bg-[#605bff] dark:bg-[#605bff] p-10">
+          <div className="bg-[#767efc]  dark:bg-[#4b57d7] transition-all duration-700 w-full h-full flex flex-col  rounded-lg p-14 z-20 space-y-3">
             <div className="flex items-cs gap-x-2 px-4 p-2 bg-white w-fit h-fit rounded-full ">
               <svg
                 width="29"
@@ -86,11 +86,11 @@ const Login = () => {
               <div className="col-span-2 lg:mt-[10rem]">
                 <ToggleButton />
               </div>
-              <div className="col-span-10">
+              <div className="col-span-10  ">
                 <img
                   src="/Login/img1.png"
                   alt=""
-                  className="absolute lg:top-[5rem] lg:left-[10rem] xl:top-[5rem] xl:left-[16rem] 2xl:left-[17rem] 2xl:top-[6rem] "
+                  className="absolute   bottom-0 right-0"
                 />
               </div>
             </div>
@@ -125,7 +125,7 @@ const Login = () => {
           </svg>
         </div>
         <div className=" p-8 rounded-lg w-11/12 lg:w-2/3 space-y-5">
-        {/* <div className=" lg:hidden">
+          {/* <div className=" lg:hidden">
 
           { <ToggleButton />}
         </div> */}
