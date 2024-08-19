@@ -48,8 +48,8 @@ const Login = () => {
   });
 
   return (
-    <div className="grid grid-cols-12  w-full dark:bg-[#161616]  ">
-      <div className="col-span-12 hidden lg:block px-24 lg:col-span-6  p-10 h-screen">
+    <div className="grid grid-cols-12 h-screen  w-full dark:bg-[#161616]  ">
+      <div className="col-span-12 hidden lg:block px-24 lg:col-span-6  p-10 ">
         <div className="w-full relative h-full rounded-lg bg-[#605bff] dark:bg-[#605bff] p-10">
           <div className="bg-[#767efc]  dark:bg-[#4b57d7] transition-all duration-700 w-full h-full flex flex-col  rounded-lg p-14 z-20 space-y-3">
             <div className="flex items-cs gap-x-2 px-4 p-2 bg-white w-fit h-fit rounded-full ">
@@ -97,7 +97,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-      <div className="col-span-12 lg:col-span-6 flex flex-col items-center justify-center h-full">
+      <div className="col-span-12 lg:col-span-6 flex flex-col items-center justify-between h-full">
         <div className="bg-[#605bff] w-full flex items-center px-3 h-[4rem] lg:hidden">
           <svg
             width="82"
